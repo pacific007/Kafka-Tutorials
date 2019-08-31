@@ -28,9 +28,11 @@ public class KafkaConsumerTest {
 		props.setProperty("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer"); //mandatory
 		props.setProperty("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer"); //mandatory
 
+		@SuppressWarnings("resource")
 		KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
 		consumer.subscribe(Arrays.asList(topic));
 		while (true) {
+			@SuppressWarnings("deprecation")
 			ConsumerRecords<String, String> records = consumer.poll(100);
 			records.forEach(record -> System.out.println(record.value()));
 
