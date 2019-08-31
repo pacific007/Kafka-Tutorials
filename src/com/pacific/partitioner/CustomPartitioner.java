@@ -27,8 +27,7 @@ public class CustomPartitioner implements Partitioner {
 	@Override
 	public int partition(String topic, Object key, byte[] keybytes, Object value, byte[] valuebytes, Cluster cluster) {
 		List<PartitionInfo> partitions = cluster.availablePartitionsForTopic(topic);
-		int partitionSize = partitions.size();
-		int s = (int) Math.abs(partitionSize * 0.3);
+		int partitionSize = partitions.size(); //use if you want to get partition size
 		int partition = 0;
 
 		if (keybytes == null) {
